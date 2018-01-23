@@ -1,15 +1,12 @@
-library(nycflights13)
+################################################################################
+# Statyczny wykres ggplot2
+################################################################################
 
-flights <- flights
-airlines <- airlines
-
-# łączenie danych
-tmpFlights <- flights %>% 
-  inner_join(airlines, by = 'carrier') %>% 
-  filter(!is.na(dep_delay))
+# wykonanie kodu z pliku global.R
+# source("global.R")
 
 # agregacja danych 
-aggDelayFlights <- tmpFlights %>% 
+aggDelayFlights <- modFlights %>% 
   group_by(hour) %>% 
   summarise(delayed_flight_perc = sum(dep_delay > 0) / n())
 
